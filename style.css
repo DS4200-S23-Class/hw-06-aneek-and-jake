@@ -1,0 +1,40 @@
+h1 {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+
+/*
+Referenced w3schools to create .columns and .column-div class styling 
+https://www.w3schools.com/howto/howto_css_three_columns.asp 
+*/
+
+.column {
+	float: left;
+	width: 33.33%;
+}
+
+
+.columns-div:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Referenced w3schools to create centered list #footer, #Acknowledgements */ 
+
+#footer {
+	text-align: center;
+}
+
+#Acknowledgements { 
+	display: inline-block;
+	text-align: left;
+} 
+
+/* circle class for scatter plots */ 
+circle, rect { 
+	opacity: 50%;
+}

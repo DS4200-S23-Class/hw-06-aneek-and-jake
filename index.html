@@ -4,12 +4,54 @@
 
 <head>
   <meta charset='utf-8'>
-
+  <link rel="stylesheet" href="style.css">
+  <script src='js/d3.v6.1.1/d3.min.js'></script>
+  <title>hw-06</title>
 </head>
 
 
 <body>
- 
+  <h1>hw-06 - D3 Brushing & Linking</h1>
+
+  <div class = "columns-div">
+    
+    <!-- Left Column Div--> 
+    <div id = "left" class = "column">
+      <h3>Petal Length vs. Sepal Length</h3>
+      <div id = "Petal_Sepal_Length_Scatter"></div>
+    </div>
+
+    <!-- Middle Column Div-->
+    <div id = "middle" class = "column">
+      <h3>Petal Width vs. Sepal Width</h3>
+      <div id = "Petal_Sepal_Width_Scatter"></div>
+    </div>
+
+    <!-- Right Column Div-->
+    <div id = "right" class = "column">
+      <h3>Counts of Iris Species</h3>
+      <div id = "Count_Iris_Bar"></div>
+    </div>
+
+  </div>
+
+  <div id = "footer">
+    <h2>Acknowledgements</h2>
+    <ul id = "Acknowledgements">
+
+      <li>https://www.w3schools.com/howto/howto_css_three_columns.asp</li>
+      <li>https://www.w3schools.com/howto/howto_css_center-list.asp</li>
+      <li>https://www.geeksforgeeks.org/how-to-make-an-svg-scale-with-its-parent-container/</li>
+      <li>https://stackoverflow.com/questions/41052584/d3-set-axes-with-percent-scale</li>
+      <li>https://stackoverflow.com/questions/11927844/get-width-in-pixels-from-element-with-style-set-with</li>
+      <li>https://observablehq.com/@d3/d3-group</li>
+      <li>https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event</li>
+      <li></li>
+
+    </ul>
+  </div>
+
+  <script src="js/script.js"></script> 
 </body>
 
 </html>

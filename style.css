@@ -1,9 +1,27 @@
+body {
+	font-family: Arial;
+}
 h1 {
 	text-align: center;
 }
 
 h3 {
 	text-align: center;
+}
+
+.button { 
+	display: block; 
+	margin: 0 auto;
+	border: none;
+	background-color: darkgray;
+	color: white;
+	padding: 15px 30px;
+
+}
+
+.button:hover {
+	background-color: lightgray;
+	color: black;
 }
 
 /*
@@ -39,6 +57,3 @@ circle {
 	opacity: 50%;
 }
 
-.button { 
-	background-color: #4CAF50 !important;
-}

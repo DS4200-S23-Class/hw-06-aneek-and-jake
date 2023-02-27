@@ -35,6 +35,10 @@ https://www.w3schools.com/howto/howto_css_three_columns.asp
 } 
 
 /* circle class for scatter plots */ 
-circle, rect { 
+circle { 
 	opacity: 50%;
+}
+
+.button { 
+	background-color: #4CAF50 !important;
 }

@@ -1,20 +1,21 @@
-const height = 500; 
+const height = 500;
 const div_width = "100%";
 
-function colorMap (d) {
-  if(d.Species === "virginica") {
-      return "blue";
+function colorMap(d) {
+  if (d.Species === "virginica") {
+    return "blue";
   } else if (d.Species === "versicolor") {
-      return "red";
+    return "red";
   } else {
-      return "green";
+    return "green";
   }
 }
 
 let width = document.getElementById('left').clientWidth;
 
-  d3.csv("data/iris.csv").then(function(data) {
-  /* left visualization */ 
+d3.csv("data/iris.csv").then(function(data) {
+
+  /* left visualization */
   const svg_1 = d3.select("#Petal_Sepal_Length_Scatter")
     .append("svg")
     .attr("width", width)
@@ -29,18 +30,18 @@ let width = document.getElementById('left').clientWidth;
     .range([height - 50, 50]);
 
   var myCircle1 = svg_1.append("g")
-        .selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", d => xScale1(d.Sepal_Length))
-        .attr("cy", d => yScale1(d.Petal_Length))
-        .attr("r", 3)
-        .attr("class", "circle")
-        .style("fill", d => colorMap(d));
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xScale1(d.Sepal_Length))
+    .attr("cy", d => yScale1(d.Petal_Length))
+    .attr("r", 3)
+    .attr("class", "circle")
+    .style("fill", d => colorMap(d));
 
-  
-  /* Referenced HW5) */
+
+  /* Referenced HW5 */
   const xAxis1 = d3.axisBottom(xScale1);
   const yAxis1 = d3.axisLeft(yScale1);
 
@@ -68,18 +69,18 @@ let width = document.getElementById('left').clientWidth;
     .range([height - 50, 50]);
 
   var myCircle2 = svg_2.append("g")
-        .selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", d => xScale2(d.Sepal_Width))
-        .attr("cy", d => yScale2(d.Petal_Width))
-        .attr("r", 3)
-        .attr("class", "circle")
-        .style("fill", d => colorMap(d));
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xScale2(d.Sepal_Width))
+    .attr("cy", d => yScale2(d.Petal_Width))
+    .attr("r", 3)
+    .attr("class", "circle")
+    .style("fill", d => colorMap(d));
 
-  
-  /* Referenced HW5) */
+
+  /* Referenced HW5 */
   const xAxis2 = d3.axisBottom(xScale2);
   const yAxis2 = d3.axisLeft(yScale2);
 
@@ -116,20 +117,21 @@ let width = document.getElementById('left').clientWidth;
     .range([height - 50, 50]);
 
   var MyRect = svg_3.append("g")
-        .selectAll("rect")
-        .data(counts)
-        .enter()
-        .append("rect")
-        .attr("x", d => xScale3(d[0]))
-        .attr("y", d => yScale3(d[1]))
-        .attr("width", xScale3.bandwidth())
-        .attr("height", (d) => 450 - yScale3(d[1]))
-        .attr("class", "rect")
-        .style("opacity", 0.5)
-        .style("fill", d => colorMap_Bar[d[0]]);
+    .selectAll("rect")
+    .data(counts)
+    .enter()
+    .append("rect")
+    .attr("x", d => xScale3(d[0]))
+    .attr("y", d => yScale3(d[1]))
+    .attr("width", xScale3.bandwidth())
+    .attr("height", (d) => 450 - yScale3(d[1]))
+    .attr("class", "rect")
+    .attr("id", d => d[0])
+    .style("opacity", 0.5)
+    .style("fill", d => colorMap_Bar[d[0]]);
 
-  
-  /* Referenced HW5) */
+
+  /* Referenced HW5 */
   const xAxis3 = d3.axisBottom(xScale3);
   const yAxis3 = d3.axisLeft(yScale3);
 
@@ -145,29 +147,54 @@ let width = document.getElementById('left').clientWidth;
 
   //add brushing
   svg_2
-    .call(d3.brush()                
-      .extent( [ [0,0], [width,height]]) 
-      .on("start brush", updateChart) 
+    .call(d3.brush()
+      .extent([
+        [0, 0],
+        [width, height]
+      ])
+      .on("start brush", updateChart)
     )
+
+
 
   // Function that is triggered when brushing is performed
   function updateChart(event) {
-    extent = event.selection; 
-    myCircle1.classed("selected", function(d){return isBrushed(extent, xScale2(d.Sepal_Width), yScale2(d.Petal_Width))});
+    const extent = event.selection;
+
+    
+    myCircle1.classed("selected", function(d) {
+      return isBrushed(extent, xScale2(d.Sepal_Width), yScale2(d.Petal_Width))
+    });
+
+    myCircle2.classed("selected", function(d) {
+      return isBrushed(extent, xScale2(d.Sepal_Width), yScale2(d.Petal_Width))
+    });
+
+    // Get the selected species from the brushed circles
+    let selectedSpecies = [];
+    myCircle1.each(function(d) {
+      const brushed = isBrushed(extent, xScale2(d.Sepal_Width), yScale2(d.Petal_Width));
+      if (brushed) {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
+        selectedSpecies.push(d.Species);
+      }
+    });
+
+    // Update the selected bars with a class
+    MyRect.classed("selected", function(d) {
+      return selectedSpecies.includes(d[0]);
+    });
   }
 
-  
+
   // A function that return TRUE or FALSE according if a dot is in the selection or not
   function isBrushed(brush_coords, cx, cy) {
-       var x0 = brush_coords[0][0],
-           x1 = brush_coords[1][0],
-           y0 = brush_coords[0][1],
-           y1 = brush_coords[1][1];
-      return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+    var x0 = brush_coords[0][0],
+      x1 = brush_coords[1][0],
+      y0 = brush_coords[0][1],
+      y1 = brush_coords[1][1];
+    return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
   }
 
 
 });
-
-
-

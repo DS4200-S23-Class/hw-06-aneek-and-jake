@@ -29,6 +29,12 @@ Referenced w3schools to create .columns and .column-div class styling
 https://www.w3schools.com/howto/howto_css_three_columns.asp 
 */
 
+.selected {
+	opacity: 1 !important;
+	stroke: black;
+	stroke-width: 1px;
+}
+
 .column {
 	float: left;
 	width: 33.33%;

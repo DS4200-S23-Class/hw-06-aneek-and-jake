@@ -24,17 +24,16 @@ h3 {
 	color: black;
 }
 
-/*
-Referenced w3schools to create .columns and .column-div class styling 
-https://www.w3schools.com/howto/howto_css_three_columns.asp 
-*/
-
 .selected {
-	opacity: .75 !important;
+	opacity: 1 !important;
 	stroke: orange;
 	stroke-width: 1px;
 }
 
+/*
+Referenced w3schools to create .columns and .column-div class styling 
+https://www.w3schools.com/howto/howto_css_three_columns.asp 
+*/
 .column {
 	float: left;
 	width: 33.33%;
@@ -48,7 +47,6 @@ https://www.w3schools.com/howto/howto_css_three_columns.asp
 }
 
 /* Referenced w3schools to create centered list #footer, #Acknowledgements */ 
-
 #footer {
 	text-align: center;
 }

@@ -40,7 +40,6 @@ d3.csv("data/iris.csv").then(function(data) {
         .attr("class", "circle")
         .style("fill", d => colorMap(d));
 
-
     /* Referenced HW5 */
     const xAxis1 = d3.axisBottom(xScale1);
     const yAxis1 = d3.axisLeft(yScale1);
@@ -52,7 +51,6 @@ d3.csv("data/iris.csv").then(function(data) {
     svg_1.append("g")
         .attr("transform", "translate(50,0)")
         .call(yAxis1);
-
 
     /* middle visualization */
     const svg_2 = d3.select("#Petal_Sepal_Width_Scatter")
@@ -79,7 +77,6 @@ d3.csv("data/iris.csv").then(function(data) {
         .attr("class", "circle")
         .style("fill", d => colorMap(d));
 
-
     /* Referenced HW5 */
     const xAxis2 = d3.axisBottom(xScale2);
     const yAxis2 = d3.axisLeft(yScale2);
@@ -91,7 +88,6 @@ d3.csv("data/iris.csv").then(function(data) {
     svg_2.append("g")
         .attr("transform", "translate(50,0)")
         .call(yAxis2);
-
 
     /* right visualization */
     const svg_3 = d3.select("#Count_Iris_Bar")
@@ -143,8 +139,6 @@ d3.csv("data/iris.csv").then(function(data) {
         .attr("transform", "translate(50,0)")
         .call(yAxis3);
 
-
-
     //add brushing
     svg_2
         .call(d3.brush()
@@ -190,6 +184,5 @@ d3.csv("data/iris.csv").then(function(data) {
             y1 = brush_coords[1][1];
         return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
     }
-
 
 });
